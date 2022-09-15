@@ -1,6 +1,7 @@
 package com.sharky2023.engineeringrevolution;
 
 import com.mojang.logging.LogUtils;
+import com.sharky2023.common.item.ModItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,6 +21,7 @@ public class EngineeringRevolution
     public EngineeringRevolution()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
