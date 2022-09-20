@@ -1,5 +1,6 @@
 package com.sharky2023.common.block;
 
+import com.sharky2023.common.block.blocks.steam_boiler.Steam_Engine_Controller;
 import com.sharky2023.common.item.ModCreativeModeTab;
 import com.sharky2023.common.item.ModItems;
 import com.sharky2023.engineeringrevolution.EngineeringRevolution;
@@ -43,7 +44,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
     public static final RegistryObject<Block> STEAM_ENGINE_CONTROLLER = registerBlock("steam_engine_controller",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new Steam_Engine_Controller(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
 
 
