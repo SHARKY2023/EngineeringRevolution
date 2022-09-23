@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "engineeringrevolution:block/steam_engine_controller_off"
+  }
+}

@@ -1,9 +1,9 @@
 package com.sharky2023.engineeringrevolution;
 
 import com.mojang.logging.LogUtils;
-import com.sharky2023.common.block.ModBlocks;
-import com.sharky2023.common.block.tile.ModBlockEntities;
-import com.sharky2023.common.item.ModItems;
+import com.sharky2023.engineeringrevolution.content.block.blocks.ModBlocks;
+import com.sharky2023.engineeringrevolution.content.block.tile.ModBlockEntities;
+import com.sharky2023.engineeringrevolution.content.item.ModItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

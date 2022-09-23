@@ -1,8 +1,8 @@
-package com.sharky2023.common.block.tile;
+package com.sharky2023.engineeringrevolution.content.block.tile;
 
 
-import com.sharky2023.common.block.ModBlocks;
-import com.sharky2023.common.block.tile.generators.Steam_Engine_Controller_Tile;
+import com.sharky2023.engineeringrevolution.content.block.blocks.ModBlocks;
+import com.sharky2023.engineeringrevolution.content.block.tile.generators.Steam_Engine_Controller_Tile;
 import com.sharky2023.engineeringrevolution.EngineeringRevolution;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;

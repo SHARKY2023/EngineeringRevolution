@@ -1,4 +1,4 @@
-package com.sharky2023.common.multiblock;
+package com.sharky2023.engineeringrevolution.util.multiblock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;

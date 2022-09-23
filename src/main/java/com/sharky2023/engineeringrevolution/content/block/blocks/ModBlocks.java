@@ -1,8 +1,8 @@
-package com.sharky2023.common.block;
+package com.sharky2023.engineeringrevolution.content.block.blocks;
 
-import com.sharky2023.common.block.blocks.steam_boiler.Steam_Engine_Controller;
-import com.sharky2023.common.item.ModCreativeModeTab;
-import com.sharky2023.common.item.ModItems;
+import com.sharky2023.engineeringrevolution.content.block.blocks.steam_boiler.Steam_Engine_Controller;
+import com.sharky2023.engineeringrevolution.content.item.ModCreativeModeTab;
+import com.sharky2023.engineeringrevolution.content.item.ModItems;
 import com.sharky2023.engineeringrevolution.EngineeringRevolution;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -46,7 +46,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> STEAM_ENGINE_CONTROLLER = registerBlock("steam_engine_controller",
             () -> new Steam_Engine_Controller(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-
+    public static final RegistryObject<Block> STEAM_ENGINE_IO = registerBlock("steam_engine_io",
+            () -> new Steam_Engine_Controller(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
 
 
 

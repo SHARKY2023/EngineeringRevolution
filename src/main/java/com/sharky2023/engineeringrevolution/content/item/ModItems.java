@@ -1,4 +1,4 @@
-package com.sharky2023.common.item;
+package com.sharky2023.engineeringrevolution.content.item;
 
 import com.sharky2023.engineeringrevolution.EngineeringRevolution;
 import net.minecraft.world.item.Item;

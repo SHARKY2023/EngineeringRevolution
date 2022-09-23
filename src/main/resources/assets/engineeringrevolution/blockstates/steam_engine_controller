@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "lit=true": { "model": "engineeringrevolution:block/steam_engine_controller_on" },
+    "lit=false": { "model": "engineeringrevolution:block/steam_engine_controller_off" }
+  }
+}
