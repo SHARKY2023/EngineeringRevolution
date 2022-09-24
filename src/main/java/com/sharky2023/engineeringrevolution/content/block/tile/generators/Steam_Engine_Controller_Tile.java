@@ -31,7 +31,7 @@ public class Steam_Engine_Controller_Tile extends BlockEntity /*implements IEner
     private final CustomEnergyStorage energyStorage = createEnergy();
     private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
 
-
+    Object formed;
     int counter;
 
 
@@ -48,33 +48,13 @@ public class Steam_Engine_Controller_Tile extends BlockEntity /*implements IEner
 
     public void tickServer() {
         if (!this.level.isClientSide) {
-            if (this.level.getGameTime() % 60 != 0)
-                return;
-            if (!MultiBlocks.STEAM_ENGINE.isComplete(this.level, this.worldPosition))
-                return;
-
-
-            if (counter > 0) {
-                energyStorage.addEnergy(300);
-                counter--;
-                setChanged();
-            }
-            if (counter <= 0) {
-                ItemStack stack = itemHandler.getStackInSlot(0);
-                int burnTime = ForgeHooks.getBurnTime(stack, RecipeType.SMELTING);
-                if (burnTime > 0) {
-                    itemHandler.extractItem(0, 1, false);
-                    counter = burnTime;
-                    setChanged();
-                }
-            }
-
-
+            if (checkMultiblock() == true) {
+                generate();
+                sendOutPower();
         }
+        return;}
 
-        sendOutPower();
     }
-
     private ItemStackHandler createHandler() {
         return new ItemStackHandler(1) { @Override
 
@@ -120,6 +100,23 @@ public class Steam_Engine_Controller_Tile extends BlockEntity /*implements IEner
         }
     }
 
+    private void generate(){
+        if (counter > 0) {
+            energyStorage.addEnergy(300);
+            counter--;
+            setChanged();
+        }
+        if (counter <= 0) {
+            ItemStack stack = itemHandler.getStackInSlot(0);
+            int burnTime = ForgeHooks.getBurnTime(stack, RecipeType.SMELTING);
+            if (burnTime > 0) {
+                itemHandler.extractItem(0, 1, false);
+                counter = burnTime;
+                setChanged();
+            }
+        }
+    }
+
 
     @Override
     public void load(CompoundTag tag) {
@@ -152,7 +149,14 @@ public class Steam_Engine_Controller_Tile extends BlockEntity /*implements IEner
             }
         };
     }
+    private boolean checkMultiblock(){
+        if  (!MultiBlocks.STEAM_ENGINE.isComplete(this.level, this.worldPosition)){
+            return true;}
 
+        else {return false;}
+
+
+    }
 }
 
 
