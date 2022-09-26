@@ -4,18 +4,29 @@ import com.sharky2023.engineeringrevolution.content.block.blocks.ModBlocks;
 import com.sharky2023.engineeringrevolution.content.block.tile.generators.SteamEngineBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.RegistryManager;
 
-public class SteamEngine extends Block {
+public class SteamEngine extends BaseMultiBlock implements EntityBlock {
 
 
     public SteamEngine(Properties p_49795_) {
         super(p_49795_);
+    }
+
+    public SteamEngine(BlockPos pos, BlockState state) {
+        super(pos, state);
     }
 
     public static boolean areAllReplaceable(BlockPos start, BlockPos end, BlockPlaceContext context) {
@@ -27,10 +38,29 @@ public class SteamEngine extends Block {
                 });
 
     }
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
+    {
+        return new SteamEngine(pos, state);
+    }
+
+
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
+    {
+        BlockEntity te = level.getBlockEntity(pos);
+        if(!(te instanceof SteamEngineBE gc))
+            return Shapes.block();
+
+        BlockPos diff = pos.subtract(gc.getMasterPostion());
+        return Shapes.box(-1 - diff.getX(), -1 - diff.getY(), -1 - diff.getZ(), 2 - diff.getX(), 4 - diff.getY(), 2 - diff.getZ());
+    }
+
+
+
     public static void setupStructure(BlockPos pos, Level level, boolean areCoordsCorrect)
     {
-        if(CCubesSettings.disableGiantCC.get())
-            return;
         int cx = pos.getX();
         int cy = pos.getY();
         int cz = pos.getZ();
@@ -52,17 +82,17 @@ public class SteamEngine extends Block {
                 {
                     i++;
 
-                    RewardsUtil.placeBlock(ModBlocks.STEAM_ENGINE.defaultBlockState(), level, new BlockPos(x, y, z), i == 27 ? 3 : 2, level.getBlockState(new BlockPos(x, y, z)).getBlock().equals(CCubesBlocks.CHANCE_CUBE));
+                    RewardsUtil.placeBlock(ModBlocks.STEAM_ENGINE.defaultBlockState(), level, new BlockPos(x, y, z), i == 27 ? 3 : 2, level.getBlockState(new BlockPos(x, y, z)).getBlock().equals(ModBlocks.STEAM_ENGINE));
 
 
                     BlockEntity tile = level.getBlockEntity(new BlockPos(x, y, z));
                     // Check if block is bottom center block
                     boolean master = (x == cx + 1 && y == cy + 1 && z == cz + 1);
-                    if(tile instanceof TileGiantCube)
+                    if(tile instanceof SteamEngineBE)
                     {
-                        ((TileGiantCube) tile).setMasterCoords(cx + 1, cy + 1, cz + 1);
-                        ((TileGiantCube) tile).setHasMaster(true);
-                        ((TileGiantCube) tile).setIsMaster(master);
+                        ((SteamEngineBE) tile).setMasterCoords(cx + 1, cy + 1, cz + 1);
+                        ((SteamEngineBE) tile).setHasMaster(true);
+                        ((SteamEngineBE) tile).setIsMaster(master);
                     }
                 }
             }
@@ -86,6 +116,19 @@ public class SteamEngine extends Block {
         }
     }
 
+    private static BlockPos findBottomCorner(BlockPos pos, Level level) {
+        return ;
+    }
 
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+       // builder.add(WATERLOGGED);
+    }
 
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return super.getStateForPlacement(context)
+                //.setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
+    }
 }}

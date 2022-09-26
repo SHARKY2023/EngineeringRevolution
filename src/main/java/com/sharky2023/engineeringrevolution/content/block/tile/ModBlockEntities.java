@@ -14,10 +14,11 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, EngineeringRevolution.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<Steam_Engine_Controller_Tile>> STEAM_ENGINE_CONTROLLER =
-            BLOCK_ENTITIES.register("steam_engine_controller_tile", () ->
+    public static final RegistryObject<BlockEntityType<Steam_Engine_Controller_Tile>> STEAMENGINE =
+            BLOCK_ENTITIES.register("steam_engine", () ->
                     BlockEntityType.Builder.of(Steam_Engine_Controller_Tile::new,
                             ModBlocks.STEAM_ENGINE_CONTROLLER.get()).build(null));
+
 
 
     public static void register(IEventBus eventBus) {

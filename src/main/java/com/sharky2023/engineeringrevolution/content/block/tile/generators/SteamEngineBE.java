@@ -1,5 +1,6 @@
 package com.sharky2023.engineeringrevolution.content.block.tile.generators;
 
+import com.sharky2023.engineeringrevolution.content.block.tile.ModBlockEntities;
 import joptsimple.internal.Rows;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -17,8 +18,8 @@ public class SteamEngineBE extends BlockEntity {
     private BlockPos masterPos = new BlockPos(0, 0, 0);
 
 
-    public SteamEngineBE(BlockEntityType<?> type, BlockPos pos, BlockState state) {
-        super(type, pos, state);
+    public SteamEngineBE(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.STEAMENGINE.get(), pos, state);
     }
 
     @Override
