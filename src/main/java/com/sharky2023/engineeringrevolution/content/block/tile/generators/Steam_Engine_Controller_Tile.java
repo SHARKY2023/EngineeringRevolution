@@ -1,10 +1,10 @@
 package com.sharky2023.engineeringrevolution.content.block.tile.generators;
 
 import com.sharky2023.engineeringrevolution.api.EngineeringRevolutionCapabilities;
-import com.sharky2023.engineeringrevolution.content.block.blocks.multi.MultiBlocks;
+import com.sharky2023.engineeringrevolution.api.energy.IEnergyStorage;
+import com.sharky2023.engineeringrevolution.content.block.multi.v1.MultiBlocks;
 import com.sharky2023.engineeringrevolution.content.block.tile.ModBlockEntities;
 import com.sharky2023.engineeringrevolution.util.energy.CustomEnergyStorage;
-import com.sharky2023.engineeringrevolution.api.energy.IEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -18,21 +18,19 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
-
 import java.util.concurrent.atomic.AtomicLong;
 
 
 public class Steam_Engine_Controller_Tile extends BlockEntity /*implements IEnergyStorage*/ {
 
-
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-
     private final CustomEnergyStorage energyStorage = createEnergy();
     private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
 
-    Object formed;
     int counter;
+    private BlockEntity master;
+
 
 
     public Steam_Engine_Controller_Tile(BlockPos pos, BlockState state) {
@@ -48,13 +46,14 @@ public class Steam_Engine_Controller_Tile extends BlockEntity /*implements IEner
 
     public void tickServer() {
         if (!this.level.isClientSide) {
-            if (checkMultiblock() == true) {
-                generate();
-                sendOutPower();
+                if (!MultiBlocks.STEAM_ENGINE.isComplete(this.level, this.worldPosition)) {
+                    generate();
+                    sendOutPower();
+                }
+                return;
         }
         return;}
 
-    }
     private ItemStackHandler createHandler() {
         return new ItemStackHandler(1) { @Override
 
@@ -149,14 +148,10 @@ public class Steam_Engine_Controller_Tile extends BlockEntity /*implements IEner
             }
         };
     }
-    private boolean checkMultiblock(){
-        if  (!MultiBlocks.STEAM_ENGINE.isComplete(this.level, this.worldPosition)){
-            return true;}
-
-        else {return false;}
 
 
-    }
 }
+
+
 
 

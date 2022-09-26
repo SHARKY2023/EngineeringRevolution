@@ -1,4 +1,4 @@
-package com.sharky2023.engineeringrevolution.content.block.blocks.multi;
+package com.sharky2023.engineeringrevolution.content.block.multi.v1;
 
 import com.sharky2023.engineeringrevolution.api.EngineeringRevolutionAPI;
 import com.sharky2023.engineeringrevolution.api.MultiBlock.IMultiblock;

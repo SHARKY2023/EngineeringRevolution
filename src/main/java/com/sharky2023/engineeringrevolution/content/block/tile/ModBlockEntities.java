@@ -15,7 +15,7 @@ public class ModBlockEntities {
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, EngineeringRevolution.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<Steam_Engine_Controller_Tile>> STEAM_ENGINE_CONTROLLER =
-            BLOCK_ENTITIES.register("gem_infusing_station", () ->
+            BLOCK_ENTITIES.register("steam_engine_controller_tile", () ->
                     BlockEntityType.Builder.of(Steam_Engine_Controller_Tile::new,
                             ModBlocks.STEAM_ENGINE_CONTROLLER.get()).build(null));
 
