@@ -1,43 +1,46 @@
 package com.sharky2023.engineeringrevolution.content.block.tile.generators;
 
+import com.sharky2023.engineeringrevolution.content.block.ModBlocks;
 import com.sharky2023.engineeringrevolution.content.block.tile.ModBlockEntities;
-import joptsimple.internal.Rows;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
 public class SteamEngineBE extends BlockEntity {
 
-    private double x = this.getBlockPos().getX();
-    private double y = this.getBlockPos().getY();
-    private double z = this.getBlockPos().getZ();
     private boolean hasMaster, isMaster;
     private BlockPos masterPos = new BlockPos(0, 0, 0);
 
-
-    public SteamEngineBE(BlockPos pos, BlockState state) {
+    public SteamEngineBE(BlockPos pos, BlockState state)
+    {
         super(ModBlockEntities.STEAMENGINE.get(), pos, state);
     }
 
-    @Override
-    public AABB getRenderBoundingBox() {
-        return new AABB(x-1,y,z,x+1,y+4,z+2);
-    }
-
+    /**
+     * Reset method to be run when the master is gone or tells them to
+     */
     public void reset()
     {
         masterPos = new BlockPos(0, 0, 0);
         hasMaster = false;
         isMaster = false;
     }
+
+    /**
+     * Check that the master exists
+     */
     public boolean checkForMaster()
     {
         BlockEntity tile = level.getBlockEntity(this.worldPosition.offset(masterPos));
         return (tile instanceof SteamEngineBE);
     }
+
     @Override
     public void saveAdditional(CompoundTag data)
     {
@@ -60,6 +63,32 @@ public class SteamEngineBE extends BlockEntity {
         hasMaster = data.getBoolean("hasMaster");
         isMaster = data.getBoolean("isMaster");
     }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket()
+    {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag()
+    {
+        CompoundTag data = new CompoundTag();
+        data.putInt("masterX", masterPos.getX());
+        data.putInt("masterY", masterPos.getY());
+        data.putInt("masterZ", masterPos.getZ());
+        data.putBoolean("hasMaster", hasMaster);
+        data.putBoolean("isMaster", isMaster);
+        return data;
+    }
+
+
+    @Override
+    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket pkt)
+    {
+        load(pkt.getTag());
+    }
+
     public boolean hasMaster()
     {
         return hasMaster;
@@ -70,9 +99,14 @@ public class SteamEngineBE extends BlockEntity {
         return isMaster;
     }
 
-    public BlockPos getMasterPostion()
+    public BlockPos getMasterPosition()
     {
         return this.worldPosition.offset(masterPos);
+    }
+
+    public BlockPos getMasterOffset()
+    {
+        return this.masterPos;
     }
 
     public void setHasMaster(boolean bool)
@@ -94,5 +128,4 @@ public class SteamEngineBE extends BlockEntity {
     {
         this.masterPos = pos.subtract(this.worldPosition);
     }
-
 }

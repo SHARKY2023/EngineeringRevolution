@@ -1,9 +1,10 @@
 package com.sharky2023.engineeringrevolution.content.block.multi.Blocks;
 
-import com.sharky2023.engineeringrevolution.EngineeringRevolution;
-import net.minecraft.core.BlockPos;
+
+import com.sharky2023.engineeringrevolution.content.item.ModCreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 
 public class BaseMultiBlock extends Block{
@@ -13,9 +14,9 @@ public class BaseMultiBlock extends Block{
     }
 
 
-
     protected static Properties getBuilder(){
-        return Properties.of(Material.DIRT).strength(0.5f, Float.MAX_VALUE);
+        return BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f).requiresCorrectToolForDrops();
     }
 }
 

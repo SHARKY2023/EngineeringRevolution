@@ -1,6 +1,6 @@
 package com.sharky2023.engineeringrevolution.content.block.blocks.steam_boiler;
 
-import com.sharky2023.engineeringrevolution.content.block.tile.generators.Steam_Engine_Controller_Tile;
+//import com.sharky2023.engineeringrevolution.content.block.tile.generators.Steam_Engine_Controller_Tile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,7 +26,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-
+/*
 public class Steam_Engine_Controller extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty FORMED = BooleanProperty.create("formed");
@@ -89,6 +89,7 @@ public class Steam_Engine_Controller extends BaseEntityBlock {
             }
         }
         return InteractionResult.SUCCESS;
-    }*/
+    }
 
-}
+
+*/

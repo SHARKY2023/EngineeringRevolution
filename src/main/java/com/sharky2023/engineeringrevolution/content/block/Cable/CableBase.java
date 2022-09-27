@@ -1,8 +1,6 @@
 package com.sharky2023.engineeringrevolution.content.block.Cable;
 
 import com.google.common.collect.Maps;
-import com.sharky2023.engineeringrevolution.content.block.blocks.ModBlocks;
-import com.sharky2023.engineeringrevolution.content.block.tile.ModBlockEntities;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,7 +9,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;

@@ -1,7 +1,7 @@
 package com.sharky2023.engineeringrevolution;
 
 import com.mojang.logging.LogUtils;
-import com.sharky2023.engineeringrevolution.content.block.blocks.ModBlocks;
+import com.sharky2023.engineeringrevolution.content.block.ModBlocks;
 import com.sharky2023.engineeringrevolution.content.block.tile.ModBlockEntities;
 import com.sharky2023.engineeringrevolution.content.item.ModItems;
 import net.minecraftforge.common.MinecraftForge;
