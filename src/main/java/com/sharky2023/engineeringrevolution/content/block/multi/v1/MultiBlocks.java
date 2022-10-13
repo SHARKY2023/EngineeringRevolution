@@ -9,20 +9,21 @@ import net.minecraft.resources.ResourceLocation;
 
 public final class MultiBlocks {
 
-/*
+
     private static final String[][] STEAM_ENGINE_PATTERN = new String[][]{
-            {"FFFFF", "FPPPF", "FFFFF"},
-            {"FPOPF", "0FFFO", "FFOFF"},
-            {"FFFFF", "FFFFF", "FFFFF"}};
+            {"FFF", "FFF", "FFF"},
+            {"FFF", "PFF", "FFF"},
+            {"FFF", "FFF", "FFF"},
+            {"FFF", "FFF", "FFF"},
+            {"FFF", "FFF", "FFF"}};
     public static final IMultiblock STEAM_ENGINE = EngineeringRevolutionAPI.instance().createMultiblock(
         new ResourceLocation(EngineeringRevolution.MOD_ID, "steam_engine"),
         MultiBlocks.STEAM_ENGINE_PATTERN,
-            '0', ModBlocks.STEAM_ENGINE_CONTROLLER,
+           // '0', ModBlocks.STEAM_ENGINE_CONTROLLER,
             'P', ModBlocks.STEAM_ENGINE,
-            'F', ModBlocks.STEAM_ENGINE_HOUSING,
-            'O', ModBlocks.STEAM_ENGINE_IO
+            'F', ModBlocks.STEAM_ENGINE_HOUSING
             );
 
-            */
+
 
 }

@@ -41,9 +41,9 @@ public class SteamEngineBlock extends BaseMultiBlock {
         builder.add(BlockStateProperties.FACING, BlockStateProperties.POWERED);
     }
 
-    private boolean canBeReplaced(Level level, BlockPos pos) {
-        return level.getBlockState(pos).getBlock().canBeReplaced(level, pos);
-    }
+  //  private boolean canBeReplaced(Level level, BlockPos pos) {
+  //      return level.getBlockState(pos).getBlock().canBeReplaced(level, pos);
+  //  }
 
 }
 

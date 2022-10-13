@@ -19,9 +19,8 @@ public static Matcher tag(Block defaultBlock, TagKey<Block> tag) {
         }
 
 public interface ICheck {
-
     boolean matches(Level level, BlockPos start, BlockPos offset, BlockPos pos, BlockState state, char c);
-}
+    }
 }
 
 
