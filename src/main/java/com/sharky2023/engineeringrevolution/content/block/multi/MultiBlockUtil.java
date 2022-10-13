@@ -11,14 +11,27 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class MultiBlockUtil {
 
-    public static boolean placeBlock(BlockState state, Level level, BlockPos pos, int update, boolean ignoreUnbreakable) {
+  public static boolean placeBlock(BlockState state, Level level, BlockPos pos, int update, boolean ignoreUnbreakable) {
 
-        if (!MultiBlockUtil.isBlockUnbreakable(level, pos)/* && (level.getBlockState(pos).getBlock().equals(Blocks.AIR.defaultBlockState())*/ || ignoreUnbreakable) {
+        if (!MultiBlockUtil.isBlockUnbreakable(level, pos) /*&& (level.getBlockState(pos).getBlock().equals(Blocks.AIR.defaultBlockState())) */|| ignoreUnbreakable) {
             level.setBlock(pos, state, update);
             return true;
-        }
+       }
         return false;
     }
+
+
+    public static boolean placeBlock(BlockState state, Level level, BlockPos pos)
+    {
+        return MultiBlockUtil.placeBlock(state, level, pos, 3, false);
+    }
+    public static boolean placeBlock(BlockState state, Level level, BlockPos pos, boolean ignoreUnbreakable)
+    {
+        return MultiBlockUtil.placeBlock(state, level, pos, 3, ignoreUnbreakable);
+    }
+
+
+
 
     public static boolean isBlockUnbreakable(Level level, BlockPos pos) {
         return level.getBlockState(pos).getDestroySpeed(level, pos) == -1 ;
@@ -43,7 +56,7 @@ public class MultiBlockUtil {
                 for (int y = cy; y < cy + 5; y++) {
                     i++;
 
-                    if (level.getBlockState(new BlockPos(x, y, z)).getBlock().equals(Blocks.AIR.defaultBlockState()));{
+                    //if (level.getBlockState(new BlockPos(x, y, z)).getBlock().equals(Blocks.AIR.defaultBlockState()));{
 
 
                     MultiBlockUtil.placeBlock(ModBlocks.STEAM_ENGINE.get().defaultBlockState(), level, new BlockPos(x, y, z), i == 45 ? 3 : 2, level.getBlockState(new BlockPos(x, y, z)).getBlock().equals(ModBlocks.STEAM_ENGINE));
@@ -56,13 +69,12 @@ public class MultiBlockUtil {
                         ((SteamEngineBE) tile).setMasterCoords(cx + 1, cy + 1, cz + 1);
                         ((SteamEngineBE) tile).setHasMaster(true);
                         ((SteamEngineBE) tile).setIsMaster(master);
-                    }
-
+                        }
                     }
                 }
             }
         }
-    }
+   // }
 
 
     public static BlockPos findBottomCorner(Block block, BlockPos pos, Level level)
@@ -105,5 +117,27 @@ public class MultiBlockUtil {
                 }
     }
 
+    public boolean canBePlaced(BlockPos pos,Level level, int xx, int yy, int zz){
+
+      int cx = pos.getX();
+      int cy = pos.getY();
+      int cz = pos.getZ();
+
+        int i = 0;
+         for (int x = cx; x < cx + xx; x++) {
+             for (int z = cz; z < cz + zz; z++) {
+                 for (int y = cy; y < cy + yy; y++) {
+                     i++;
+
+                     if (level.getBlockState(new BlockPos(x, y, z)).getBlock().equals(Blocks.AIR.defaultBlockState())) ;
+                     {
+                         return true;
+
+                     }
+                 }
+             }
+         }
+        return false;
+    }
 }
 
