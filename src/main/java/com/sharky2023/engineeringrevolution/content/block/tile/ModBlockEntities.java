@@ -26,7 +26,7 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(SteamEngineControllerBE::new,
                             ModBlocks.STEAM_ENGINE.get()).build(null));
     public static final RegistryObject<BlockEntityType<BlastFurnaceBE>> BLASTFURNACE =
-            BLOCK_ENTITIES.register("steam_engine_controller", () ->
+            BLOCK_ENTITIES.register("blastfurnace", () ->
                     BlockEntityType.Builder.of(BlastFurnaceBE::new,
                             ModBlocks.BLASTFURNACE.get()).build(null));
 
