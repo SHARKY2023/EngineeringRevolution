@@ -20,8 +20,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.concurrent.atomic.AtomicLong;
 
-/*
-public class Steam_Engine_Controller_Tile extends BlockEntity {
+
+public class SteamEngineControllerBE extends BlockEntity {
 
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -33,8 +33,8 @@ public class Steam_Engine_Controller_Tile extends BlockEntity {
 
 
 
-    public Steam_Engine_Controller_Tile(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.STEAM_ENGINE_CONTROLLER.get(), pos, state);
+    public SteamEngineControllerBE(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.STEAMENGINECONTROLLER.get(), pos, state);
     }
 
     @Override
@@ -152,6 +152,6 @@ public class Steam_Engine_Controller_Tile extends BlockEntity {
 
 }
 
-*/
+
 
 

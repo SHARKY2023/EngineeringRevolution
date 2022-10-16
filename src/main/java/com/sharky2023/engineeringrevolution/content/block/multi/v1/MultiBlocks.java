@@ -12,7 +12,7 @@ public final class MultiBlocks {
 
     private static final String[][] STEAM_ENGINE_PATTERN = new String[][]{
             {"FFF", "FFF", "FFF"},
-            {"FFF", "PFF", "FFF"},
+            {"FFF", "FFF", "FFF"},
             {"FFF", "FFF", "FFF"},
             {"FFF", "FFF", "FFF"},
             {"FFF", "FFF", "FFF"}};
@@ -20,8 +20,8 @@ public final class MultiBlocks {
         new ResourceLocation(EngineeringRevolution.MOD_ID, "steam_engine"),
         MultiBlocks.STEAM_ENGINE_PATTERN,
            // '0', ModBlocks.STEAM_ENGINE_CONTROLLER,
-            'P', ModBlocks.STEAM_ENGINE,
-            'F', ModBlocks.STEAM_ENGINE_HOUSING
+          //  'P', ModBlocks.STEAM_ENGINE,
+            'F', ModBlocks.STEAM_ENGINE
             );
 
 

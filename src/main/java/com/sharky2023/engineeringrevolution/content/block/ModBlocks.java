@@ -2,6 +2,7 @@ package com.sharky2023.engineeringrevolution.content.block;
 
 //import com.sharky2023.engineeringrevolution.content.block.blocks.steam_boiler.Steam_Engine_Controller;
 import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.BaseMultiBlock;
+import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.BlastFurnace;
 import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.SteamEngine;
 import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.SteamEngineBlock;
 import com.sharky2023.engineeringrevolution.content.item.ModCreativeModeTab;
@@ -51,6 +52,9 @@ public class ModBlocks {
     public static final RegistryObject<BaseMultiBlock> STEAM_ENGINE = registerBlock("steam_engine", () -> new SteamEngine(BlockBehaviour.Properties.of(Material.METAL)
             .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
     public static final RegistryObject<BaseMultiBlock> STEAM_ENGINE_BLOCK = registerBlock("steam_engine_block", () -> new SteamEngineBlock(BlockBehaviour.Properties.of(Material.METAL)
+            .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
+
+    public static final RegistryObject<BlastFurnace> BLASTFURNACE = registerBlock("blastfurnace", () -> new BlastFurnace(BlockBehaviour.Properties.of(Material.METAL)
             .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){

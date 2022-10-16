@@ -19,7 +19,7 @@ public class SteamEngineBlock extends BaseMultiBlock {
         super(properties);
 
     }
-
+/*
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean idk)
     {
@@ -30,6 +30,10 @@ public class SteamEngineBlock extends BaseMultiBlock {
         MultiBlockUtil.setupStructureSE(pos.offset(-1, 0, -1), level, true);
 
     }
+
+    */
+
+
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
