@@ -40,9 +40,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> MACHINE_BLOCK = registerBlock("machine_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-//    public static final RegistryObject<Block> STEAM_ENGINE = registerBlock("steam_engine",
- //           () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
-  //                  .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
+    public static final RegistryObject<Block> STEAMENGINECONTROLLER = registerBlock("steam_engine_controller",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
     public static final RegistryObject<Block> STEAM_ENGINE_HOUSING = registerBlock("steam_engine_housing",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);

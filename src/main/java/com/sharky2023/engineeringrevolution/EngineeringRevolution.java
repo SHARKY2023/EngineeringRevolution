@@ -1,8 +1,10 @@
 package com.sharky2023.engineeringrevolution;
 
 import com.mojang.logging.LogUtils;
+import com.sharky2023.engineeringrevolution.Client.ClientSetup;
 import com.sharky2023.engineeringrevolution.content.block.ModBlocks;
 import com.sharky2023.engineeringrevolution.content.block.tile.ModBlockEntities;
+import com.sharky2023.engineeringrevolution.content.container.ModContainers;
 import com.sharky2023.engineeringrevolution.content.item.ModItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,6 +29,7 @@ public class EngineeringRevolution
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModContainers.register(modEventBus);
 
 
 
@@ -45,6 +48,7 @@ public class EngineeringRevolution
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+
       }
     }
 }

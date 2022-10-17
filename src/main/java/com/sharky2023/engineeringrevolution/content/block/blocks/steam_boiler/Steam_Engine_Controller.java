@@ -1,6 +1,8 @@
 package com.sharky2023.engineeringrevolution.content.block.blocks.steam_boiler;
 
-//import com.sharky2023.engineeringrevolution.content.block.tile.generators.Steam_Engine_Controller_Tile;
+//import com.sharky2023.engineeringrevolution.content.block.tile.generators.SteamEngineControllerBE;
+import com.sharky2023.engineeringrevolution.content.block.tile.generators.SteamEngineControllerBE;
+import com.sharky2023.engineeringrevolution.content.container.SteamEngineContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,13 +28,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-/*
+
 public class Steam_Engine_Controller extends BaseEntityBlock {
+
+    public static final String STEAMENGINE_SCREEN = "screen.engineeringrevolution.steamengine";
+
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty FORMED = BooleanProperty.create("formed");
 
-    public Steam_Engine_Controller(Properties properties){
-        super(properties); }
+    public Steam_Engine_Controller(Properties properties) {
+        super(properties);
+    }
 
 
     @Override
@@ -47,12 +53,13 @@ public class Steam_Engine_Controller extends BaseEntityBlock {
         return defaultBlockState().setValue(BlockStateProperties.FACING, context.getNearestLookingDirection().getOpposite());
     }
 
-//hasValid
+    //hasValid
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new Steam_Engine_Controller_Tile(pos, state);
+        return new SteamEngineControllerBE(pos, state);
     }
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
@@ -60,27 +67,27 @@ public class Steam_Engine_Controller extends BaseEntityBlock {
             return null;
         }
         return (lvl, pos, blockState, t) -> {
-            if (t instanceof Steam_Engine_Controller_Tile tile) {
+            if (t instanceof SteamEngineControllerBE tile) {
                 tile.tickServer();
             }
         };
     }
-  /*
+
     @SuppressWarnings("deprecation")
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult trace) {
         if (!level.isClientSide) {
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof Steam_Engine_Controller_Tile) {
+            if (be instanceof SteamEngineControllerBE) {
                 MenuProvider containerProvider = new MenuProvider() {
                     @Override
                     public Component getDisplayName() {
-                        return Component.translatable(SCREEN_STEAM);
+                        return Component.translatable(STEAMENGINE_SCREEN);
                     }
 
                     @Override
                     public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity) {
-                        return new Steam_Engine_Container(windowId, pos, playerInventory, playerEntity);
+                        return new SteamEngineContainer(windowId, pos, playerInventory, playerEntity);
                     }
                 };
                 NetworkHooks.openScreen((ServerPlayer) player, containerProvider, be.getBlockPos());
@@ -91,5 +98,4 @@ public class Steam_Engine_Controller extends BaseEntityBlock {
         return InteractionResult.SUCCESS;
     }
 
-
-*/
+}

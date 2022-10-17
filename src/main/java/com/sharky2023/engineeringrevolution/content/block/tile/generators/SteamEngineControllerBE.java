@@ -149,6 +149,14 @@ public class SteamEngineControllerBE extends BlockEntity {
         };
     }
 
+    public boolean isStructureValid(){
+         if (MultiBlocks.STEAM_ENGINE.isComplete(this.level, this.worldPosition)) {
+             return true;
+         }
+         else
+             return false;
+    }
+
 
 }
 
