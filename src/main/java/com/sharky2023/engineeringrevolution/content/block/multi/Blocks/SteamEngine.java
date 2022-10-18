@@ -1,31 +1,6 @@
 package com.sharky2023.engineeringrevolution.content.block.multi.Blocks;
 
-import com.sharky2023.engineeringrevolution.content.block.ModBlocks;
-import com.sharky2023.engineeringrevolution.content.block.multi.MultiBlockUtil;
-import com.sharky2023.engineeringrevolution.content.block.tile.generators.SteamEngineBE;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.util.FakePlayer;
-import org.jetbrains.annotations.NotNull;
-
+/*
 public class SteamEngine extends BaseMultiBlock implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
@@ -39,7 +14,7 @@ public class SteamEngine extends BaseMultiBlock implements EntityBlock {
         return new SteamEngineBE(pos, state);
     }
 
-    /*
+
         @Override
         public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
         {
@@ -65,7 +40,7 @@ public class SteamEngine extends BaseMultiBlock implements EntityBlock {
             return;
 
         }}
-    */
+    */ /*
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
@@ -79,3 +54,4 @@ public class SteamEngine extends BaseMultiBlock implements EntityBlock {
                 //.setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
     }
 }
+*/

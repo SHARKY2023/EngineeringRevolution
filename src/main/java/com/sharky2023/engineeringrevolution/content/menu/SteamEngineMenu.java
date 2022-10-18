@@ -1,44 +1,51 @@
-package com.sharky2023.engineeringrevolution.content.container;
+package com.sharky2023.engineeringrevolution.content.menu;
 
 import com.sharky2023.engineeringrevolution.api.EngineeringRevolutionCapabilities;
 import com.sharky2023.engineeringrevolution.api.energy.IEnergyStorage;
 import com.sharky2023.engineeringrevolution.content.block.ModBlocks;
+import com.sharky2023.engineeringrevolution.content.block.tile.generators.SteamEngineBE;
 import com.sharky2023.engineeringrevolution.util.energy.CustomEnergyStorage;
-import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.DataSlot;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
 
-public class SteamEngineContainer extends AbstractContainerMenu {
+public class SteamEngineMenu extends AbstractContainerMenu {
 
-    //public SteamEngineControllerBE tile;
-        private BlockEntity BlockEntity;
-        private Player playerEntity;
-        private IItemHandler playerInventory;
+    private SteamEngineBE blockEntity;
+    private final Level level;
+    private IItemHandler playerInventory;
 
-    public SteamEngineContainer(int windowId, BlockPos pos, Inventory playerInventory, Player player) {
-            super(ModContainers.STEAMENGINE_CONTAINER.get(), windowId);
-            BlockEntity = player.getCommandSenderWorld().getBlockEntity(pos);
-            this.playerEntity = player;
-            this.playerInventory = new InvWrapper(playerInventory);
+    public SteamEngineMenu(int ContainerId, Inventory Inv, FriendlyByteBuf extraData) {
+        this(ContainerId, Inv, Inv.player.level.getBlockEntity(extraData.readBlockPos()));
+    }
 
-            if (BlockEntity != null) {
-                BlockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> addSlot(new SlotItemHandler(h, 0, 64, 24)));
-            }
-            layoutPlayerInventorySlots(10, 70);
-            trackPower();
+    public SteamEngineMenu(int ContainerId, Inventory Inv, BlockEntity entity) {
+        super(ModMenus.STEAMENGINE_MENU.get(), ContainerId);
+        checkContainerSize(Inv, 41);
+        blockEntity = ((SteamEngineBE) entity);
+        this.level = Inv.player.level;
+
+/*
+        if (blockEntity != null) {
+            blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+                addSlot(new SlotItemHandler(h, 0, 64, 24));
+            });
         }
 
+        layoutPlayerInventorySlots(10, 70);
+        trackPower();
+
+        }
+*/
+    }
 
 
     // Setup syncing of power from server to client so that the GUI can show the amount of power in the block
@@ -53,7 +60,7 @@ public class SteamEngineContainer extends AbstractContainerMenu {
 
                 @Override
                 public void set(int value) {
-                    BlockEntity.getCapability(EngineeringRevolutionCapabilities.ENERGY).ifPresent(h -> {
+                    blockEntity.getCapability(EngineeringRevolutionCapabilities.ENERGY).ifPresent(h -> {
                         long energyStored = h.getEnergyStored() & 0xffff0000;
                         ((CustomEnergyStorage)h).setEnergy(energyStored + (value & 0xffff));
                     });
@@ -67,7 +74,7 @@ public class SteamEngineContainer extends AbstractContainerMenu {
 
                 @Override
                 public void set(int value) {
-                    BlockEntity.getCapability(EngineeringRevolutionCapabilities.ENERGY).ifPresent(h -> {
+                    blockEntity.getCapability(EngineeringRevolutionCapabilities.ENERGY).ifPresent(h -> {
                         long energyStored = h.getEnergyStored() & 0x0000ffff;
                         ((CustomEnergyStorage)h).setEnergy(energyStored | (value << 16));
                     });
@@ -76,16 +83,16 @@ public class SteamEngineContainer extends AbstractContainerMenu {
         }
 
         public Long getEnergy() {
-            return BlockEntity.getCapability(EngineeringRevolutionCapabilities.ENERGY).map(IEnergyStorage::getEnergyStored).orElse((long) 0);
+            return blockEntity.getCapability(EngineeringRevolutionCapabilities.ENERGY).map(IEnergyStorage::getEnergyStored).orElse((long) 0);
         }
 
         @Override
-        public boolean stillValid(Player playerIn) {
-            return stillValid(ContainerLevelAccess.create(BlockEntity.getLevel(), BlockEntity.getBlockPos()), playerEntity, ModBlocks.STEAMENGINECONTROLLER.get());
+        public boolean stillValid(Player player) {
+            return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.STEAMENGINE.get());
         }
 
         @Override
-        public ItemStack quickMoveStack(Player playerIn, int index) {
+        public ItemStack quickMoveStack(Player player, int index) {
             ItemStack itemstack = ItemStack.EMPTY;
             Slot slot = this.slots.get(index);
             if (slot != null && slot.hasItem()) {
@@ -97,7 +104,7 @@ public class SteamEngineContainer extends AbstractContainerMenu {
                     }
                     slot.onQuickCraft(stack, itemstack);
                 } else {
-                    if (stack.getItem() == Items.COAL) {
+                    if (ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0) {
                         if (!this.moveItemStackTo(stack, 0, 1, false)) {
                             return ItemStack.EMPTY;
                         }
@@ -120,7 +127,7 @@ public class SteamEngineContainer extends AbstractContainerMenu {
                     return ItemStack.EMPTY;
                 }
 
-                slot.onTake(playerIn, stack);
+                slot.onTake(player, stack);
             }
 
             return itemstack;

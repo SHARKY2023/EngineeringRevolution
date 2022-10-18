@@ -1,10 +1,12 @@
 package com.sharky2023.engineeringrevolution.content.block;
 
 //import com.sharky2023.engineeringrevolution.content.block.blocks.steam_boiler.Steam_Engine_Controller;
-import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.BaseMultiBlock;
-import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.BlastFurnace;
-import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.SteamEngine;
-import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.SteamEngineBlock;
+//import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.BaseMultiBlock;
+//import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.BlastFurnace;
+//import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.SteamEngine;
+//import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.SteamEngineBlock;
+import com.sharky2023.engineeringrevolution.content.block.blocks.BlastFurnace;
+import com.sharky2023.engineeringrevolution.content.block.blocks.SteamEngine;
 import com.sharky2023.engineeringrevolution.content.item.ModCreativeModeTab;
 import com.sharky2023.engineeringrevolution.content.item.ModItems;
 import com.sharky2023.engineeringrevolution.EngineeringRevolution;
@@ -33,28 +35,14 @@ public class ModBlocks {
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(6f).requiresCorrectToolForDrops(),
                     UniformInt.of(3, 7)), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-    public static final RegistryObject<Block> DEEPSLATE_ZIRCON_ORE = registerBlock("deepslate_zircon_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(6f).requiresCorrectToolForDrops(),
-                    UniformInt.of(3, 7)), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
     public static final RegistryObject<Block> MACHINE_BLOCK = registerBlock("machine_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-    public static final RegistryObject<Block> STEAMENGINECONTROLLER = registerBlock("steam_engine_controller",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+    public static final RegistryObject<SteamEngine> STEAMENGINE = registerBlock("steamengine",
+            () -> new SteamEngine(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-    public static final RegistryObject<Block> STEAM_ENGINE_HOUSING = registerBlock("steam_engine_housing",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-
-
-
-    public static final RegistryObject<BaseMultiBlock> STEAM_ENGINE = registerBlock("steam_engine", () -> new SteamEngine(BlockBehaviour.Properties.of(Material.METAL)
-            .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-    public static final RegistryObject<BaseMultiBlock> STEAM_ENGINE_BLOCK = registerBlock("steam_engine_block", () -> new SteamEngineBlock(BlockBehaviour.Properties.of(Material.METAL)
-            .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-
-    public static final RegistryObject<BlastFurnace> BLASTFURNACE = registerBlock("blastfurnace", () -> new BlastFurnace(BlockBehaviour.Properties.of(Material.METAL)
+    public static final RegistryObject<BlastFurnace> BLASTFURNACE = registerBlock("blastfurnace",
+            () -> new BlastFurnace(BlockBehaviour.Properties.of(Material.METAL)
             .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){

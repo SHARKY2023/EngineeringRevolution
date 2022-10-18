@@ -1,19 +1,19 @@
 package com.sharky2023.engineeringrevolution.content.block.multi;
 
 import com.sharky2023.engineeringrevolution.content.block.ModBlocks;
-import com.sharky2023.engineeringrevolution.content.block.tile.generators.SteamEngineBE;
+//import com.sharky2023.engineeringrevolution.content.block.tile.generators.SteamEngineBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
+/*
 public class MultiBlockUtil {
 
   public static boolean placeBlock(BlockState state, Level level, BlockPos pos, int update, boolean ignoreUnbreakable) {
 
-        if (!MultiBlockUtil.isBlockUnbreakable(level, pos) /*&& (level.getBlockState(pos).getBlock().equals(Blocks.AIR.defaultBlockState())) */|| ignoreUnbreakable) {
+        if (!MultiBlockUtil.isBlockUnbreakable(level, pos) && (level.getBlockState(pos).getBlock().equals(Blocks.AIR.defaultBlockState())) || ignoreUnbreakable) {
             level.setBlock(pos, state, update);
             return true;
        }
@@ -141,3 +141,6 @@ public class MultiBlockUtil {
     }
 }
 
+
+
+ */
