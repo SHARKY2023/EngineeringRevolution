@@ -6,6 +6,7 @@ package com.sharky2023.engineeringrevolution.content.block;
 //import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.SteamEngine;
 //import com.sharky2023.engineeringrevolution.content.block.multi.Blocks.SteamEngineBlock;
 import com.sharky2023.engineeringrevolution.content.block.blocks.BlastFurnace;
+import com.sharky2023.engineeringrevolution.content.block.blocks.ElectricFurnace;
 import com.sharky2023.engineeringrevolution.content.block.blocks.SteamEngine;
 import com.sharky2023.engineeringrevolution.content.item.ModCreativeModeTab;
 import com.sharky2023.engineeringrevolution.content.item.ModItems;
@@ -28,13 +29,12 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, EngineeringRevolution.MOD_ID);
 
-    public static final RegistryObject<Block> ZIRCON_BLOCK = registerBlock("zircon_block",
+    public static final RegistryObject<Block> CRUSHER = registerBlock("crusher",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
-    public static final RegistryObject<Block> ZIRCON_ORE = registerBlock("zircon_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(6f).requiresCorrectToolForDrops(),
-                    UniformInt.of(3, 7)), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
+    public static final RegistryObject<ElectricFurnace> ELECTRICFURNACE = registerBlock("electric_furnace",
+            () -> new ElectricFurnace(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);
     public static final RegistryObject<Block> MACHINE_BLOCK = registerBlock("machine_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.ENGINEERINGREVOLUTION_TAB);

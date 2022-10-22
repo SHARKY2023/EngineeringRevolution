@@ -21,6 +21,8 @@ public class ModMenus {
             registerMenuType(SteamEngineMenu::new,"steamengine");
     public static final RegistryObject<MenuType<BlastFurnaceMenu>> BLASTFURNACE_MENU =
             registerMenuType(BlastFurnaceMenu::new,"blastfurnace");
+    public static final RegistryObject<MenuType<ElectricFurnaceMenu>> ELECTRICFURNACE_MENU =
+            registerMenuType(ElectricFurnaceMenu::new,"eletric_furnace");
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
                                                                                                  String name) {

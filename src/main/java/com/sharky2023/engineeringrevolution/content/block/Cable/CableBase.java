@@ -135,7 +135,8 @@ public class CableBase extends BaseEntityBlock implements SimpleWaterloggedBlock
         return null;
     }
 
-/*    EnumProperty<ConnectionType> property = CableBase.FACING_TO_PROPERTY_MAP.get(side);
+/*
+    EnumProperty<ConnectionType> property = CableBase.FACING_TO_PROPERTY_MAP.get(side);
     return blockState.getBlock() instanceof CableBase
         && blockState.hasProperty(property)
             && blockState.getValue(property).isUnBlocked() == false;
